@@ -17,6 +17,16 @@ documents: ['docx','doc','pdf','txt','png','pptx','odg','ods','xlsx'],
 app: ['exe','dmg','pkg','deb'],
 
 
+
+
+
+
+
+
+
+
+
+
 }
 
 
