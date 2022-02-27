@@ -13,8 +13,10 @@ let path= require("path");
 let types={
 media: ["mp4","mkv"],
 archives: ['zip','7z','rar','tar','iso','gz','ar','xz'],
-documents: ['docx','doc','pdf','txt','png','pptx','odg','ods','xlsx'],
 
+
+
+documents: ['docx','doc','pdf','txt','png','pptx','odg','ods','xlsx'],
 
 
 
