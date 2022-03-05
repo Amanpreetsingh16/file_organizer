@@ -1,0 +1,23 @@
+{
+  "name": "file_organizer",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amanpreetsingh16/file_organizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "yeye": "main.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Amanpreetsingh16/file_organizer/issues"
+  },
+  "homepage": "https://github.com/Amanpreetsingh16/file_organizer#readme",
+  "description": ""
+}

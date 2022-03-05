@@ -1,9 +1,11 @@
+#!/usr/bin/env node
 //to take input from comand line
 let inputarr = process.argv.slice(2);
 //console.log(inputarr);
 
 let fs = require("fs");
 let path = require("path");
+const { dirname } = require("path/posix");
 
 // node main.js tree "directorypath"
 // node main.js organise "directorypath"
@@ -48,6 +50,53 @@ switch (command) {
 }
 function treefn(dirpath) {
     console.log("Tree command implemented for", dirpath);
+
+    if (dirpath == undefined) {
+
+        console.log('kindly enter the path');
+        return;
+    } else {
+
+        let doesexist = fs.existsSync(dirpath);
+
+        if (doesexist) {
+
+            treehelper(dirpath, "");
+
+
+        } else {
+            console.log('kindly enter the vald path');
+            return;
+
+
+
+        }
+    }
+
+}
+
+function treehelper(dirpath, indent) {
+   // console.log(dirpath, "yeh chla");
+    let isfile = fs.lstatSync(dirpath).isFile();
+    //console.log(isfile);
+    if (isfile == true) {
+        let disfilename = path.basename(dirpath);
+        console.log(indent + "├____" + disfilename);
+    }else{
+
+        let dirnamepath = path.basename(dirpath);
+        console.log(indent+"┖-----"+dirnamepath);
+        let childrens = fs.readdirSync(dirpath);
+       // console.log(childrens);
+        for(let i=0;i<childrens.length;i++){
+            let childpath= path.join(dirpath,childrens[i]);
+          //  console.log(childpath);
+            treehelper(childpath,indent);
+        }
+        
+    }
+        
+    
 
 }
 
@@ -115,18 +164,18 @@ function organisehelper(src, dest) {
 }
 
 
-function sendfiles(srcfilepath, dest, category){
+function sendfiles(srcfilepath, dest, category) {
 
     let categorypath = path.join(dest, category);
-    if(fs.existsSync(categorypath) == false){
+    if (fs.existsSync(categorypath) == false) {
 
         fs.mkdirSync(categorypath);
 
     }
-    let filename =path.basename(srcfilepath);
-    let destfilepath = path.join(category,filename);
-    fs.copyFileSync(srcfilepath,destfilepath);
-    console.log(filename,"copied to",category);
+    let filename = path.basename(srcfilepath);
+    let destfilepath = path.join(categorypath, filename);
+    fs.copyFileSync(srcfilepath, destfilepath);
+    console.log(filename, "copied to", category);
 }
 
 function getcategory(name) {
@@ -151,19 +200,19 @@ function getcategory(name) {
     return "others";
 }
 
-function sendfiles(srcfilepath, dest, category){
+// function sendfiles(srcfilepath, dest, category){
 
-    let categorypath = path.join(dest, category);
-    if(fs.existsSync(categorypath) == false){
+//     let categorypath = path.join(dest, category);
+//     if(fs.existsSync(categorypath) == false){
 
-        fs.mkdirSync(categorypath);
+//         fs.mkdirSync(categorypath);
 
-    }
-    let filename =path.basename(srcfilepath);
-    let destfilepath = path.join(category,filename);
-    fs.copyFileSync(srcfilepath,destfilepath);
-    console.log(filename,"copied to",category);
-}
+//     }
+//     let filename =path.basename(srcfilepath);
+//     let destfilepath = path.join(category,filename);
+//     fs.copyFileSync(srcfilepath,destfilepath);
+//     console.log(filename,"copied to",category);
+// }
 
 
 //help function implemented here 
